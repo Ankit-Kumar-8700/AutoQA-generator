@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+ 
+{% block body %}
+ 
+<h2>Fill in the Blanks</h2>
+
+        {% for question in questions %}
+            <h3>{{ question['sentence'] }}</h3>
+            <input type="radio" id="true_{{ loop.index }}" name="answer_{{ loop.index }}" value="true" onclick="changeColor({{ loop.index }}, true,{{ question.answer }})">
+            <label for="true_{{ loop.index }}" id="label_true_{{ loop.index }}">True</label>
+            <input type="radio" id="false_{{ loop.index }}" name="answer_{{ loop.index }}" value="false" onclick="changeColor({{ loop.index }}, false,{{ question.answer }})">
+            <label for="false_{{ loop.index }}" id="label_false_{{ loop.index }}">False</label>
+            <br><br>
+        {% endfor %}
+ 
+ 
+{% endblock %}

@@ -1,0 +1,36 @@
+p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Style for the radio buttons and labels */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+label {
+    font-size: 16px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Style for the correct option */
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+/* Style for the wrong option */
+.wrong {
+    color: red;
+    font-weight: bold;
+}
+
+/* Hover effects */
+input[type="radio"]:hover + label {
+    color: blue;
+}
+
+label:hover {
+    text-decoration: underline;
+}

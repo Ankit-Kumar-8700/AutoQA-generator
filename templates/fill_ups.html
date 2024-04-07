@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+ 
+{% block body %}
+ 
+<h2>Fill in the Blanks</h2>
+
+        {% for question in questions %}
+        <p>{{ question.question }}</p>
+        <div class="blank">
+            <label for="{{ question.answer }}" class="label">Enter answer : </label>
+            <input type="text" name="{{ question.answer }}" id="{{ question.answer }}" >
+            <div class="btns">
+                <button onclick="checkBlank('{{ question.answer }}')">Check</button>
+                <button onclick="answerBlank('{{ question.answer }}')">Answer</button>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+ 
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+ 
+{% block body %}
+ 
+<h2>Multiple Choice Questions</h2>
+
+        {% for question in questions %}
+        <p>{{ question.question }}</p>
+        {% for option in question.options %}
+        <input type="radio" id="{{ question.id }}_{{ option }}" name="{{ question.id }}_option" value="{{ option }}" onclick="checkAnswer('{{ question.id }}', '{{ option }}', '{{ question.answer }}')">
+        <label id="{{ question.id }}_{{ option }}Label" name="{{ question.id }}" for="{{ question.id }}_{{ option }}">{{ option }}</label><br>
+        {% endfor %}
+        <br>
+        {% endfor %}
+
+    
+ 
+{% endblock %}

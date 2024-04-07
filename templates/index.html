@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/chatbot.css">
+    <link rel="stylesheet" href="/static/css/contact.css">
+    <link rel="stylesheet" href="/static/css/fill_ups.css">
+    <link rel="stylesheet" href="/static/css/mcq.css">
+    <link rel="stylesheet" href="/static/css/true_false.css">
+    <title>Question-Answer System</title>
+</head>
+<body>
+    <section class="navbar">
+        <div id="logo">
+            <img src="/static/images/logo.png" alt="logo.png">
+        </div>
+        <ul class="nav-menu">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a id="mcq" href="/mcq">MCQ's</a>
+            </li>
+            <li>
+                <a id="fill_ups" href="/fill_ups">Fill_Ups</a>
+            </li>
+            <li>
+                <a id="true_false" href="/true_false">True/False</a>
+            <li>
+                <a id="chatbot" href="/analysis">Analytics</a>
+            </li>
+            <li>
+                <a id="contact" href="/contact">Contact</a>
+            </li>
+        </ul>
+        <!-- <div id="searchbar">
+            <input type="text" placeholder="Search Pokemon">
+        </div>
+        <div id="btn">
+            <input type="submit" value="Let's Go!!">
+        </div> -->
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </section>
+
+    <section class="body">
+    {% block body %}
+ 
+    <form action="/upload" method="post">
+        <textarea name="paragraph" id="paragraph" placeholder="Type the Paragraph here..."></textarea>
+        <div class="buttons">
+        <button type="submit">Upload</button>
+        <button type="reset">Reset</button>
+        </div>
+    </form>
+    
+    
+    {% endblock %}
+    </body>
+
+
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", mobileMenu);
+
+        function mobileMenu() {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        }
+
+
+        function checkAnswer(questionId, selectedOption, correctAnswer) {
+
+            var options2=document.getElementsByName(questionId+"_option");
+            for (var i = 0; i < options2.length; i++) {
+                options2[i].checked = false;
+            }
+            
+            var options = document.getElementsByName(questionId);
+            for (var i = 0; i < options.length; i++) {
+                if(options[i].classList.contains("correct")){
+                    options[i].classList.remove("correct");
+                }
+                if(options[i].classList.contains("wrong")){
+                    options[i].classList.remove("wrong");
+                }
+            }
+
+            var selected=document.getElementById(questionId+"_"+selectedOption+"Label");
+            var selOpt=document.getElementById(questionId+"_"+selectedOption);
+            selOpt.checked=true;
+
+            if (selectedOption === correctAnswer) {
+                selected.classList.add('correct');
+            } else {
+                selected.classList.add('wrong');
+            }
+        }
+
+        function checkBlank(answer){
+            var ele=document.getElementById(answer);
+
+            if(ele.classList.contains("correct")){
+                ele.classList.remove("correct");
+            }
+            if(ele.classList.contains("wrong")){
+                ele.classList.remove("wrong");
+            }
+
+            if(ele.value===answer){
+                ele.classList.add("correct");
+            }
+            else{
+                ele.classList.add("wrong");
+            }
+        }
+
+        function answerBlank(answer){
+            var ele=document.getElementById(answer);
+
+            if(ele.classList.contains("correct")){
+                ele.classList.remove("correct");
+            }
+            if(ele.classList.contains("wrong")){
+                ele.classList.remove("wrong");
+            }
+
+            ele.classList.add("correct");
+
+            ele.value=answer;
+        }
+
+        function changeColor(id,correct,answer){
+            console.log(answer)
+            var ele1=document.getElementById("label_true_"+id);
+            var ele2=document.getElementById("label_false_"+id);
+
+            if(ele1.classList.contains("correct")){
+                ele1.classList.remove("correct");
+            }
+            if(ele1.classList.contains("wrong")){
+                ele1.classList.remove("wrong");
+            }
+
+            if(ele2.classList.contains("correct")){
+                ele2.classList.remove("correct");
+            }
+            if(ele2.classList.contains("wrong")){
+                ele2.classList.remove("wrong");
+            }
+
+            var ele=document.getElementById("label_"+correct+"_"+id);
+
+            if(correct===answer){
+                ele.classList.add("correct");
+            }
+            else {
+                ele.classList.add("wrong");
+            }
+        }
+    </script>
+    
+</body>
+</html>

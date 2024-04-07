@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+ 
+{% block body %}
+ 
+<div class="summary-container">
+    <h2>Analysis</h2>
+    <p>{{ summary }}</p>
+    <br><br>
+    <h3>Keywords found in summary are:</h3>
+    <p class="keywords">{{ keywords }}</p>
+</div>
+ 
+{% endblock %}
